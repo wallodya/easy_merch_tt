@@ -23,6 +23,11 @@ class LevelMap {
             .placeEnemies(this.enemies)
             .placeHero()
 
+        for (let Enemy of this.enemies) {
+            Enemy.updatePlayerPosition(Gamer.x, Gamer.y)
+            Enemy.setUpdatePositionInterval()
+        }
+
         this.isMapGenerated = true
 
         return this
