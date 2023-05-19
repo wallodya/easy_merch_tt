@@ -11,19 +11,19 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i|Tinos:400,400i&amp;subset=cyrillic"
         rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script async defer src="game/tile/tile.js"></script>
-    <script async defer src="game/tile/void.js"></script>
-    <script async defer src="game/tile/wall.js"></script>
-    <script async defer src="game/level/hallway.js"></script>
-    <script async defer src="game/level/room.js"></script>
-    <script async defer src="game/entities/player.js"></script>
-    <script async defer src="game/entities/enemy.js"></script>
-    <script async defer src="game/entities/hero.js"></script>
-    <script async defer src="game/level/generator.js"></script>
-    <script async defer src="game/level/map.js"></script>
-    <script async defer src="game/level/level.js"></script>
-    <script async defer src="game/game.js"></script>
-    <script async defer src="index.js"></script>
+    <script async defer src="src/game/tile/tile.js"></script>
+    <script async defer src="src/game/tile/void.js"></script>
+    <script async defer src="src/game/tile/wall.js"></script>
+    <script async defer src="src/game/level/hallway.js"></script>
+    <script async defer src="src/game/level/room.js"></script>
+    <script async defer src="src/game/entities/player.js"></script>
+    <script async defer src="src/game/entities/enemy.js"></script>
+    <script async defer src="src/game/entities/hero.js"></script>
+    <script async defer src="src/game/level/generator.js"></script>
+    <script async defer src="src/game/level/map.js"></script>
+    <script async defer src="src/game/level/level.js"></script>
+    <script async defer src="src/game/game.js"></script>
+    <script async defer src="src/index.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -67,31 +67,31 @@
             width: 100%;
             height: 100%;
             background-size: 100%;
-            background-image: url(../assets/img/tile-.png);
+            background-image: url(assets/img/tile-.png);
             z-index: 5;
         }
 
         .field .tileW {
-            background-image: url(../assets/img/tile-W.png);
+            background-image: url(assets/img/tile-W.png);
         }
 
         .field .tileE {
-            background-image: url(../assets/img/tile-E.png);
+            background-image: url(assets/img/tile-E.png);
             z-index: 10;
         }
 
         .field .tileP {
-            background-image: url(../assets/img/tile-P.png);
+            background-image: url(assets/img/tile-P.png);
             z-index: 10;
         }
 
         .field .tileHP {
-            background-image: url(../assets/img/tile-HP.png);
+            background-image: url(assets/img/tile-HP.png);
             z-index: 9;
         }
 
         .field .tileSW {
-            background-image: url(../assets/img/tile-SW.png);
+            background-image: url(assets/img/tile-SW.png);
             z-index: 9;
         }
 
@@ -140,11 +140,6 @@
     <!--h1>Инвентарь</h1>
 		<div class="inventory-box"><div class="inventory"></div></div-->
 
-    <script>
-        // import { TestGame } from "./index.js"
-        // var Game = require("./index.js")
-
-    </script>
 </body>
 
 </html>
