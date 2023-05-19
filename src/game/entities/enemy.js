@@ -4,6 +4,7 @@ class Enemy extends Player{
         this.playerX = 0
         this.playerY = 0
         this.updatePostionInterval = null
+        this.hasMoved = false
     }
 
     updatePlayerPosition(x, y) {
@@ -21,7 +22,6 @@ class Enemy extends Player{
         this.playerY = y
 
         if (this.checkPlayer()) {
-            console.log("attack")
             this.attack()
         }
         return this
@@ -29,32 +29,60 @@ class Enemy extends Player{
 
     setUpdatePositionInterval() {
         this.updatePostionInterval = setInterval(() => {
-            let hasMoved = false
-            if (!hasMoved && this.playerY < this.y) {
-                this.up()
-                hasMoved = true
-            }
-            
-            if (!hasMoved && this.playerY > this.y) {
-                this.down()
-                hasMoved = true
-            }
-            
-            if (!hasMoved && this.playerX < this.x) {
-                this.left()
-                hasMoved = true
-            }
-
-            if (!hasMoved && this.playerX > this.x) {
-                this.right()
-                hasMoved = true
-            }
-
-            if (this.checkPlayer()) {
-                this.attack()
-            }
-
+            this.hasMoved = false
+            this.move()
         }, this.speed)
+    }
+    
+    move() {        
+        if (!this.hasMoved && this.playerY > this.y) {
+            this.down()
+        }
+
+        if (!this.hasMoved && this.playerY < this.y) {
+            this.up()
+        }
+        
+        
+        if (!this.hasMoved && this.playerX < this.x) {
+            this.left()
+        }
+    
+        if (!this.hasMoved && this.playerX > this.x) {
+            this.right()
+        }
+    
+        if (this.checkPlayer()) {
+            this.attack()
+        }
+        return this
+    }
+
+    up(){
+        if (super.up()) {
+            this.hasMoved = true
+        }
+        return this
+    }
+    down(){
+        if (super.down()) {
+            this.hasMoved = true
+        }
+
+        return this
+    }
+    left(){
+        if (super.left()) {
+            this.hasMoved = true
+        }
+
+        return this
+    }
+    right(){
+        if (super.right()) {
+            this.hasMoved = true
+        }
+        return this
     }
 
     checkPlayer() {

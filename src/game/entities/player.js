@@ -56,7 +56,7 @@ class Player {
 
     up() {
         if (this.y === 0) {
-            return this
+            return null
         }
 
         const DestTile = this.mapMatrix[this.y - 1][this.x]
@@ -66,13 +66,14 @@ class Player {
         if (tileAvailable) {
             this.y--
             this.moveTo(DestTile)
+            return this
         }
 
-        return this
+        return null
     }
     down() {
         if (this.y === this.mapMatrix.length - 1) {
-            return this
+            return null
         }
 
         const DestTile = this.mapMatrix[this.y + 1][this.x]
@@ -82,14 +83,15 @@ class Player {
         if (tileAvailable) {
             this.y++
             this.moveTo(DestTile)
+            return this
         }
 
-        return this
+        return null
     }
 
     left() {
         if (this.x === 0) {
-            return this
+            return null
         }
 
         const DestTile = this.mapMatrix[this.y][this.x - 1]
@@ -99,14 +101,15 @@ class Player {
         if (tileAvailable) {
             this.x--
             this.moveTo(DestTile)
+            return this
         }
 
-        return this
+        return null
     }
 
     right() {
         if (this.x === this.mapMatrix[this.y].length - 1) {
-            return this
+            return null
         }
 
         const DestTile = this.mapMatrix[this.y][this.x + 1]
@@ -116,9 +119,10 @@ class Player {
         if (tileAvailable) {
             this.x++
             this.moveTo(DestTile)
+            return this
         }
 
-        return this
+        return null
     }
 
     updateHealthBar() {

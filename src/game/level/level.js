@@ -24,9 +24,9 @@ class Level {
     init()  {
         Gamer.setFieldMatrix(this.gameFieldMatrix)
         for (let i = 0; i < this.enemiesAmount; i++) {
-            const enemyHealth = Math.round(400 + 600 * Math.random())
-            const enemyDamage = Math.round( 50 + 200 * Math.random())
-            const enemySpeed = Math.round(enemyHealth / 2)
+            const enemyHealth = Math.round(200 + 400 * Math.random())
+            const enemyDamage = Math.round( 50 + 100 * Math.random())
+            const enemySpeed = Math.round((enemyHealth + enemyDamage) / 2 + 150)
 
             const Mob = new Enemy(enemyHealth, enemyDamage, enemySpeed).setFieldMatrix(this.gameFieldMatrix)
             this.enemies.push(Mob)
