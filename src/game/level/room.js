@@ -3,8 +3,8 @@ export class Room {
         this.container = container
         this.Tile = RoomTile
 
-        this.length = 3 + Math.round((5 * Math.random()))
-        this.height = 3 + Math.round((5 * Math.random()))
+        this.length = Math.round((3 + 5 * Math.random()))
+        this.height = Math.round((3 + 5 * Math.random()))
         this.x = Math.round(40 * Math.random())
         this.y = Math.round(24 * Math.random())
         this.isDisconnected = true

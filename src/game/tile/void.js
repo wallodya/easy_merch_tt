@@ -40,8 +40,12 @@ export class Void extends Tile {
         this.hasEntity = true
         this.Entity = Entity
 
-        const healthPerc = Math.round(Entity.health / Entity.maxHealth) * 100
-        this.healthBar = $("<div/>").addClass("health").attr("style", `width: ${healthPerc}% `).attr("id", "health-bar")
+        const healthPerc = Math.round(Entity.health / Entity.maxHealth  * 100)
+        if (Entity instanceof Hero) {
+            console.log(healthPerc)
+        }
+        this.healthBar = $("<div/>").addClass("health").attr("style", `width: ${healthPerc}% `)
+        Entity.healthBar = this.healthBar
         this.DOMElement.append(this.healthBar)
 
         if (Entity instanceof Hero) {
@@ -59,7 +63,8 @@ export class Void extends Tile {
         this.healthBar = null
         this.Entity = null
 
-        this.DOMElement.removeClass("tileP", "tileE")
+        this.DOMElement.removeClass("tileP")
+        this.DOMElement.removeClass("tileE")
         return this
     }
 }

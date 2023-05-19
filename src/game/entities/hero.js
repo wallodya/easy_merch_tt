@@ -2,7 +2,81 @@ import { Player } from "./player.js";
 
 export class Hero extends Player {
     constructor(){
-        super(1000, 100, 500)
+        super(1000, 100, 500, false)
+        this.listeners = []
+    }
+
+    takeDamage(damage) {
+        super.takeDamage(damage)
+        console.log("health before damage: ", this.health)
+        console.log("player took damage: ", this.health)
+    }
+
+    up(){
+        super.up()
+        this.checkPotion()
+        this.checkSword()
+        for (let Mob of this.listeners) {
+            Mob.updatePlayerPosition(this.x, this.y)
+        }
+    }
+
+    down(){
+        super.down()
+        this.checkPotion()
+        this.checkSword()
+        for (let Mob of this.listeners) {
+            Mob.updatePlayerPosition(this.x, this.y)
+        }
+    }
+
+    left(){
+        super.left()
+        this.checkPotion()
+        this.checkSword()
+        for (let Mob of this.listeners) {
+            Mob.updatePlayerPosition(this.x, this.y)
+        }
+    }
+
+    right(){
+        super.right()
+        this.checkPotion()
+        this.checkSword()
+        for (let Mob of this.listeners) {
+            Mob.updatePlayerPosition(this.x, this.y)
+        }
+    }
+
+    checkPotion() {
+        if (this.CurrentTile.hasPotion) {
+            this.health = this.maxHealth
+            this.CurrentTile.removePotion()
+        }
+        return this
+    }
+    
+    checkSword() {
+        if (this.CurrentTile.hasSword) {
+            this.damage += (100 + Math.round(100 * Math.random()))
+            this.CurrentTile.removeSword()
+        }
+        return this
+    }
+
+    die() {
+        super.die()
+        window.location.reload()
+    }
+
+    subscribe(Mob) {
+        this.listeners.push(Mob)
+        return this
+    }
+
+    unsubscribe(Mob) {
+        this.listeners = this.listeners.filter(Entity => Entity !== Mob)
+        return this
     }
 }
 

@@ -26,9 +26,9 @@ export class MapGenerator {
         this.swordsAmount = swordsAmount
         this.potionsAmount = potionsAmount
         this.enemiesAmount = enemiesAmount
-        this.roomsAmount = 10 + Math.round(Math.random() * 5)
-        this.verticalHallwaysAmount = 3 + Math.round(Math.random() * 2)
-        this.horizontalHallwaysAmount = 3 + Math.round(Math.random() * 2)
+        this.roomsAmount = Math.round(10 + Math.random() * 5)
+        this.verticalHallwaysAmount = Math.round(3 + Math.random() * 2)
+        this.horizontalHallwaysAmount = Math.round(3 + Math.random() * 2)
 
         this.rooms = []
         this.verticalHallways = []
@@ -164,17 +164,17 @@ export class MapGenerator {
         return this
     }
 
-    placeEnemies() {
+    placeEnemies(enemies) {
         if (!this.mapMatrix) {
             throw new Error("Can't place enemies before map is generated")
         }
 
         const voidTilesAmount = this.voidTiles.length
 
-        for (let i = 0; i <this.enemiesAmount; i++) {
+        for (let i = 0; i <enemies.length; i++) {
             let enemyPlaced = false
 
-            const Mob = new Enemy(800, 80, 400).setFieldMatrix(this.mapMatrix)
+            const Mob = enemies[i]
 
             while (!enemyPlaced) {
                 const enemyTileIndex = Math.round((voidTilesAmount - 1) * Math.random())

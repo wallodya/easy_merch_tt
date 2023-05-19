@@ -1,5 +1,3 @@
-
-//Stores only tile texture(asset link) and flag whether it is void or not
 export class Tile {
     constructor(isVoid, classNames, container){
         this.x = 0
