@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,700&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i|Tinos:400,400i&amp;subset=cyrillic"
+        rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="module" src="index.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        h1 {
+            font-family: "Playfair Display";
+            font-size: 30px;
+            padding: 10px 0px;
+            margin: 0px;
+        }
+
+        .field-box {
+            border: 2px solid #d0d0d0;
+            float: left;
+        }
+
+        .field {
+            position: relative;
+            width: 1024px;
+            height: 640px;
+            display: grid;
+            grid-template-columns: repeat(40, 1fr);
+            grid-template-rows: repeat(24, 1fr);
+        }
+
+        .field .tile {
+            /* position: absolute; */
+            align-self: stretch;
+            justify-self: center;
+            width: 100%;
+            height: 100%;
+            background-size: 100%;
+            background-image: url(../assets/img/tile-.png);
+            z-index: 5;
+        }
+
+        .field .tileW {
+            background-image: url(../assets/img/tile-W.png);
+        }
+
+        .field .tileE {
+            background-image: url(../assets/img/tile-E.png);
+            z-index: 10;
+        }
+
+        .field .tileP {
+            background-image: url(../assets/img/tile-P.png);
+            z-index: 10;
+        }
+
+        .field .tileHP {
+            background-image: url(../assets/img/tile-HP.png);
+            z-index: 9;
+        }
+
+        .field .tileSW {
+            background-image: url(../assets/img/tile-SW.png);
+            z-index: 9;
+        }
+
+        .field .tile .health {
+            background-color: #ff0000;
+            z-index: 11;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            height: 3px;
+        }
+
+        .field .tileP .health {
+            background-color: #00ff00;
+            z-index: 11;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            height: 3px;
+        }
+
+        .inventory-box {
+            border: 2px solid #d0d0d0;
+            float: left;
+        }
+
+        .inventory {
+            position: relative;
+            width: 800px;
+            height: 32px;
+        }
+
+        .cl {
+            clear: both;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Игровое поле</h1>
+    <div class="field-box">
+        <div class="field" id="field"></div>
+    </div>
+    <div class="cl"></div>
+    <!--h1>Инвентарь</h1>
+		<div class="inventory-box"><div class="inventory"></div></div-->
+
+    <script type="module">
+        import { TestGame } from "./index.js"
+        import { Wall } from "./game/tile/wall.js"
+        TestGame.init()
+
+        $("#field").click((event) => {
+            console.log("field is clicked")
+        })
+    </script>
+</body>
+
+</html>
