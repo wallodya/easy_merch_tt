@@ -1,8 +1,19 @@
+import { Enemy } from "../entities/enemy.js"
+import Hero from "../entities/hero.js"
 import { Hallway } from "./hallway.js"
 import { Room } from "./room.js"
 
 export class MapGenerator {
-    constructor(mapLength, mapHeight, swordsAmount, potionsAmount, WallTile, VoidTile, container) {
+    constructor(
+        mapLength,
+        mapHeight,
+        swordsAmount,
+        potionsAmount,
+        enemiesAmount,
+        WallTile,
+        VoidTile,
+        container
+    ) {
         this.container = container
         this.Wall = WallTile
         this.Void = VoidTile
@@ -14,6 +25,7 @@ export class MapGenerator {
 
         this.swordsAmount = swordsAmount
         this.potionsAmount = potionsAmount
+        this.enemiesAmount = enemiesAmount
         this.roomsAmount = 10 + Math.round(Math.random() * 5)
         this.verticalHallwaysAmount = 3 + Math.round(Math.random() * 2)
         this.horizontalHallwaysAmount = 3 + Math.round(Math.random() * 2)
@@ -74,7 +86,7 @@ export class MapGenerator {
                 if (!hasHallway) {
                     const VerticalHallway = new Hallway(this.Void, true, colIndex, this.container)
                         .placeSelf(this.mapMatrix, this.voidTiles)
-                        
+
                     this.verticalHallways.push(VerticalHallway)
                     hallwayPlaced = true
                 }
@@ -94,9 +106,8 @@ export class MapGenerator {
                 if (!hasHallway) {
                     const HorizontalHallway = new Hallway(this.Void, false, rowIndex, this.container)
                         .placeSelf(this.mapMatrix, this.voidTiles)
-                        
+
                     this.horizontalHallways.push(HorizontalHallway)
-                    console.log(Hallway)
                     hallwayPlaced = true
                 }
             }
@@ -109,6 +120,23 @@ export class MapGenerator {
         if (!this.mapMatrix) {
             throw new Error("Can't place postions before map is generated")
         }
+
+        const voidTilesAmount = this.voidTiles.length
+
+        for (let i = 0; i <this.potionsAmount; i++) {
+            let potionPlaced = false
+            while (!potionPlaced) {
+                const potionTileIndex = Math.round((voidTilesAmount - 1) * Math.random())
+    
+                const Tile = this.voidTiles[potionTileIndex]
+    
+                if (!Tile.hasPotion && !Tile.hasSword && !Tile.hasEnemy && !Tile.hasHero) {
+                    Tile.placePotion()
+                }
+                potionPlaced = true
+            }
+        }
+
         return this
     }
 
@@ -116,6 +144,23 @@ export class MapGenerator {
         if (!this.mapMatrix) {
             throw new Error("Can't place swords before map is generated")
         }
+
+        const voidTilesAmount = this.voidTiles.length
+
+        for (let i = 0; i <this.swordsAmount; i++) {
+            let swordPlaced = false
+            while (!swordPlaced) {
+                const swordTileIndex = Math.round((voidTilesAmount - 1) * Math.random())
+    
+                const Tile = this.voidTiles[swordTileIndex]
+    
+                if (!Tile.hasPotion && !Tile.hasSword && !Tile.hasEnemy && !Tile.hasHero) {
+                    Tile.placeSword()
+                }
+                swordPlaced = true
+            }
+        }   
+
         return this
     }
 
@@ -123,6 +168,27 @@ export class MapGenerator {
         if (!this.mapMatrix) {
             throw new Error("Can't place enemies before map is generated")
         }
+
+        const voidTilesAmount = this.voidTiles.length
+
+        for (let i = 0; i <this.enemiesAmount; i++) {
+            let enemyPlaced = false
+
+            const Mob = new Enemy(800, 80, 400).setFieldMatrix(this.mapMatrix)
+
+            while (!enemyPlaced) {
+                const enemyTileIndex = Math.round((voidTilesAmount - 1) * Math.random())
+    
+                const Tile = this.voidTiles[enemyTileIndex]
+    
+                if (!Tile.hasPotion && !Tile.hasSword && !Tile.hasEnemy && !Tile.hasHero) {
+                    Tile.placeEntity(Mob)
+                    Mob.place(Tile, Tile.x - 1, Tile.y - 1)
+                }
+                enemyPlaced = true
+            }
+        } 
+
         return this
     }
 
@@ -130,6 +196,23 @@ export class MapGenerator {
         if (!this.mapMatrix) {
             throw new Error("Can't place hero before map is generated")
         }
+
+        const voidTilesAmount = this.voidTiles.length
+
+        let playerPlaced = false
+
+        while (!playerPlaced) {
+            const playerTileIndex = Math.round((voidTilesAmount - 1) * Math.random())
+
+            const Tile = this.voidTiles[playerTileIndex]
+
+            if (!Tile.hasPotion && !Tile.hasSword && !Tile.hasEnemy && !Tile.hasHero) {
+                Tile.placeEntity(Hero)
+                Hero.place(Tile, Tile.x - 1, Tile.y - 1)
+            }
+            playerPlaced = true
+        }
+
         return this
     }
 }

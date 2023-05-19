@@ -17,8 +17,18 @@ export class Room {
             for (let x = this.x; x < xRight && (x < mapMatrix[y].length); x++) {
                 this.checkConnected(mapMatrix, x, y)
                 const VoidTile = new this.Tile(this, this.container).setCoords(x + 1, y + 1)
+
+                const conflictingTileIndex = voidTiles.findIndex(
+                    Tile => Tile.x === VoidTile.x && Tile.y === VoidTile.y
+                )
+
+                if (conflictingTileIndex) {
+                    voidTiles[conflictingTileIndex] = VoidTile
+                } else {
+                    voidTiles.push(VoidTile)
+                }
+
                 mapMatrix[y][x] = VoidTile
-                voidTiles.push(VoidTile)
             }
         }
         return this

@@ -1,9 +1,9 @@
 export class LevelMap {
-    constructor(container) {
+    constructor(container, matrix) {
         this.height = 24
         this.length = 40
         this.container = container
-        this.matrix = Array(this.height).fill(Array(this.length).fill())
+        this.matrix = matrix
         this.Generator = null
         this.isMapGenerated = false
     }
@@ -17,6 +17,10 @@ export class LevelMap {
             .generateRooms()
             .placeHallways()
             .placeRooms()
+            .placePotions()
+            .placeSwords()
+            .placeEnemies()
+            .placeHero()
 
         this.isMapGenerated = true
 

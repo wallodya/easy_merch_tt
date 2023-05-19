@@ -1,3 +1,4 @@
+import { Hero } from "../entities/hero.js";
 import { Tile } from "./tile.js";
 
 export class Void extends Tile {
@@ -6,8 +7,11 @@ export class Void extends Tile {
         this.Parent = Parent
         this.hasPotion = false
         this.hasSword = false
-        this.hasHero = false
-        this.hasEnemy = false
+        this.hasEntity = false
+
+        this.Entity = null
+
+        this.healthBar = null
     }
 
     placePotion() {
@@ -23,34 +27,39 @@ export class Void extends Tile {
 
     placeSword() {
         this.hasSword = true
-        this.DOMElement.addClass("tileS")
+        this.DOMElement.addClass("tileSW")
         return this
     }
     removeSword() {
         this.hasSword = false
-        this.DOMElement.removeClass("tileS")
+        this.DOMElement.removeClass("tileSW")
         return this
     }
 
-    placeHero() {
-        this.hasHero = true
-        this.DOMElement.addClass("tileP")
-        return this
-    }
-    removeHero() {
-        this.hasHero = false
-        this.DOMElement.removeClass("tileP")
-        return this
-    }
+    placeEntity(Entity) {
+        this.hasEntity = true
+        this.Entity = Entity
 
-    placeEnemy() {
-        this.hasEnemy = true
-        this.DOMElement.addClass("tileE")
+        const healthPerc = Math.round(Entity.health / Entity.maxHealth) * 100
+        this.healthBar = $("<div/>").addClass("health").attr("style", `width: ${healthPerc}% `).attr("id", "health-bar")
+        this.DOMElement.append(this.healthBar)
+
+        if (Entity instanceof Hero) {
+            this.DOMElement.addClass("tileP")
+        } else {
+            this.DOMElement.addClass("tileE")
+        }
         return this
     }
-    removeEnemy() {
-        this.hasEnemy = false
-        this.DOMElement.removeClass("tileE")
+    removeEntity() {
+        this.hasEntity = false
+
+        this.DOMElement.empty()
+
+        this.healthBar = null
+        this.Entity = null
+
+        this.DOMElement.removeClass("tileP", "tileE")
         return this
     }
 }
