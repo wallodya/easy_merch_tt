@@ -1,5 +1,3 @@
-import { Game } from "./game/game.js";
+var TestGame = new Game("#field")
 
-
-
-export const TestGame = new Game("#field")
+TestGame.init()

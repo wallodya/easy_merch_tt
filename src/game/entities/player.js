@@ -1,6 +1,4 @@
-import Hero from "./hero.js"
-
-export class Player {
+class Player {
     constructor(maxHealth, damage, speed, isNPC) {
         this.x = 0
         this.y = 0
@@ -12,7 +10,6 @@ export class Player {
         this.speed = speed
         this.healthBar = null
         this.isNPC = isNPC
-        // console.log("player: ", this)
     }
 
 
@@ -25,9 +22,7 @@ export class Player {
                     Tile.Entity.takeDamage(this.damage)
                 } else if (!Tile.Entity.isNPC) {
                     const takenDamage = this.damage
-                    console.log("npc damage: ", takenDamage)
                     Tile.Entity.takeDamage(this.damage)
-                    console.log("Hero.health: ", Hero.health)
                 }
             }
         }

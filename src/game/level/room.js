@@ -1,4 +1,4 @@
-export class Room {
+class Room {
     constructor(RoomTile, container) {
         this.container = container
         this.Tile = RoomTile

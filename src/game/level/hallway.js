@@ -1,4 +1,4 @@
-export class Hallway {
+class Hallway {
     constructor(HallwayTile, isVertical, position, container) {
         this.Tile = HallwayTile
         this.isVertical = isVertical

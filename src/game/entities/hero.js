@@ -1,6 +1,4 @@
-import { Player } from "./player.js";
-
-export class Hero extends Player {
+class Hero extends Player {
     constructor(){
         super(1000, 100, 500, false)
         this.listeners = []
@@ -8,8 +6,6 @@ export class Hero extends Player {
 
     takeDamage(damage) {
         super.takeDamage(damage)
-        console.log("health before damage: ", this.health)
-        console.log("player took damage: ", this.health)
     }
 
     up(){
@@ -132,4 +128,3 @@ window.addEventListener("keydown", (event) => {
     }
 })
 
-export default Gamer

@@ -11,7 +11,19 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i|Tinos:400,400i&amp;subset=cyrillic"
         rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script type="module" src="index.js"></script>
+    <script async defer src="game/tile/tile.js"></script>
+    <script async defer src="game/tile/void.js"></script>
+    <script async defer src="game/tile/wall.js"></script>
+    <script async defer src="game/level/hallway.js"></script>
+    <script async defer src="game/level/room.js"></script>
+    <script async defer src="game/entities/player.js"></script>
+    <script async defer src="game/entities/enemy.js"></script>
+    <script async defer src="game/entities/hero.js"></script>
+    <script async defer src="game/level/generator.js"></script>
+    <script async defer src="game/level/map.js"></script>
+    <script async defer src="game/level/level.js"></script>
+    <script async defer src="game/game.js"></script>
+    <script async defer src="index.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -128,14 +140,10 @@
     <!--h1>Инвентарь</h1>
 		<div class="inventory-box"><div class="inventory"></div></div-->
 
-    <script type="module">
-        import { TestGame } from "./index.js"
-        import { Wall } from "./game/tile/wall.js"
-        TestGame.init()
+    <script>
+        // import { TestGame } from "./index.js"
+        // var Game = require("./index.js")
 
-        $("#field").click((event) => {
-            console.log("field is clicked")
-        })
     </script>
 </body>
 

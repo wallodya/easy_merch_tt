@@ -1,4 +1,4 @@
-export class Tile {
+class Tile {
     constructor(isVoid, classNames, container){
         this.x = 0
         this.y = 0

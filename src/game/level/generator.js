@@ -1,9 +1,4 @@
-import { Enemy } from "../entities/enemy.js"
-import Hero from "../entities/hero.js"
-import { Hallway } from "./hallway.js"
-import { Room } from "./room.js"
-
-export class MapGenerator {
+class MapGenerator {
     constructor(
         mapLength,
         mapHeight,
@@ -40,7 +35,6 @@ export class MapGenerator {
     generateLevelMap(emptyMatrix) {
 
         this.mapMatrix = emptyMatrix
-        console.log("generating level matrix...")
         for (let y = 0; y < this.mapHeight; y++) {
             this.mapMatrix[y] = this.mapMatrix[y].map((_, xIndex) => {
                 const tile = new this.Wall(this.container).setCoords(xIndex + 1, y + 1)
@@ -207,8 +201,8 @@ export class MapGenerator {
             const Tile = this.voidTiles[playerTileIndex]
 
             if (!Tile.hasPotion && !Tile.hasSword && !Tile.hasEnemy && !Tile.hasHero) {
-                Tile.placeEntity(Hero)
-                Hero.place(Tile, Tile.x - 1, Tile.y - 1)
+                Tile.placeEntity(Gamer)
+                Gamer.place(Tile, Tile.x - 1, Tile.y - 1)
             }
             playerPlaced = true
         }

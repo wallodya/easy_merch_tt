@@ -1,7 +1,4 @@
-import { Hero } from "../entities/hero.js";
-import { Tile } from "./tile.js";
-
-export class Void extends Tile {
+class Void extends Tile {
     constructor(Parent, container) {
         super(true, "", container)
         this.Parent = Parent
@@ -41,9 +38,6 @@ export class Void extends Tile {
         this.Entity = Entity
 
         const healthPerc = Math.round(Entity.health / Entity.maxHealth  * 100)
-        if (Entity instanceof Hero) {
-            console.log(healthPerc)
-        }
         this.healthBar = $("<div/>").addClass("health").attr("style", `width: ${healthPerc}% `)
         Entity.healthBar = this.healthBar
         this.DOMElement.append(this.healthBar)

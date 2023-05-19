@@ -1,4 +1,4 @@
-export class LevelMap {
+class LevelMap {
     constructor(container, matrix, enemies) {
         this.height = 24
         this.length = 40
@@ -37,7 +37,6 @@ export class LevelMap {
         if (!this.isMapGenerated) {
             throw new Error("Map was not generated")
         }
-        console.log("placing map inside " + this.container + "...")
         this.matrix.flat().forEach(tile => tile.render())
     }
 

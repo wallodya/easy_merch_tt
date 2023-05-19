@@ -1,9 +1,4 @@
-import { Wall } from "../tile/wall.js"
-import { Void } from "../tile/void.js"
-import Hero from "../entities/hero.js"
-import { Enemy } from "../entities/enemy.js"
-
-export class Level {
+class Level {
     constructor(container, LevelMap, MapGenerator) {
         this.container = container
         this.height = 24
@@ -27,8 +22,7 @@ export class Level {
     }
 
     init()  {
-        console.log("initialising Level...")
-        Hero.setFieldMatrix(this.gameFieldMatrix)
+        Gamer.setFieldMatrix(this.gameFieldMatrix)
         for (let i = 0; i < this.enemiesAmount; i++) {
             const enemyHealth = Math.round(400 + 600 * Math.random())
             const enemyDamage = Math.round( 50 + 200 * Math.random())
@@ -36,9 +30,8 @@ export class Level {
 
             const Mob = new Enemy(enemyHealth, enemyDamage, enemySpeed).setFieldMatrix(this.gameFieldMatrix)
             this.enemies.push(Mob)
-            Hero.subscribe(Mob)
+            Gamer.subscribe(Mob)
         }
-        console.log("level enemies: ", this.enemies)
         this.Map.setGenerator(this.MapGenerator).init().render(this.container)
     }
 }

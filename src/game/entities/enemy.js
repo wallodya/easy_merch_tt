@@ -1,7 +1,4 @@
-import Hero from "./hero.js";
-import { Player } from "./player.js";
-
-export class Enemy extends Player{
+class Enemy extends Player{
     constructor(health, damage, speed) {
         super(health, damage, speed, true)
         this.playerX = 0
@@ -36,6 +33,6 @@ export class Enemy extends Player{
 
     die() {
         super.die()
-        Hero.unsubscribe(this)
+        Gamer.unsubscribe(this)
     }
 }
