@@ -25,7 +25,6 @@ Enemy.prototype.updatePlayerPosition = function (x, y) {
 
     this.playerX = x
     this.playerY = y
-
     if (this.checkPlayer()) {
         this.attack()
     }
@@ -57,7 +56,9 @@ Enemy.prototype.move = function () {
         this.right()
     }
 
+    console.log("checking for attack")
     if (this.checkPlayer()) {
+        console.log("attack")
         this.attack()
     }
     return this
