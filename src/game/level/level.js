@@ -1,5 +1,4 @@
-class Level {
-    constructor(container, LevelMap, MapGenerator) {
+function Level(container, LevelMap, MapGenerator) {
         this.container = container
         this.height = 24
         this.length = 40
@@ -19,19 +18,19 @@ class Level {
             Void,
             this.container
         )
-    }
+}
 
-    init()  {
-        Gamer.setFieldMatrix(this.gameFieldMatrix)
-        for (let i = 0; i < this.enemiesAmount; i++) {
-            const enemyHealth = Math.round(200 + 400 * Math.random())
-            const enemyDamage = Math.round( 50 + 100 * Math.random())
-            const enemySpeed = Math.round((enemyHealth + enemyDamage) / 2 + 150)
+Level.prototype.init = function() {
+    Gamer.setFieldMatrix(this.gameFieldMatrix)
+    for (var i = 0; i < this.enemiesAmount; i++) {
+        var enemyHealth = Math.round(200 + 400 * Math.random());
+        var enemyDamage = Math.round( 50 + 100 * Math.random());
+        var enemySpeed = Math.round((enemyHealth + enemyDamage) / 2 + 150);
 
-            const Mob = new Enemy(enemyHealth, enemyDamage, enemySpeed).setFieldMatrix(this.gameFieldMatrix)
-            this.enemies.push(Mob)
-            Gamer.subscribe(Mob)
-        }
-        this.Map.setGenerator(this.MapGenerator).init().render(this.container)
+        var Mob = new Enemy(enemyHealth, enemyDamage, enemySpeed);
+        Mob.setFieldMatrix(this.gameFieldMatrix);
+        this.enemies.push(Mob);
+        Gamer.subscribe(Mob);
     }
+    this.Map.setGenerator(this.MapGenerator).init().render(this.container)
 }
