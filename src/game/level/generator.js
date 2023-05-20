@@ -200,8 +200,8 @@ MapGenerator.prototype.placeHero = function () {
         if (!Tile.hasPotion && !Tile.hasSword && !Tile.hasEnemy && !Tile.hasHero) {
             Tile.placeEntity(Gamer)
             Gamer.place(Tile, Tile.x - 1, Tile.y - 1)
+            playerPlaced = true
         }
-        playerPlaced = true
     }
 
     return this

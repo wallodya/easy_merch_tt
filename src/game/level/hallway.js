@@ -20,7 +20,6 @@ Hallway.prototype.placeSelf = function(mapMatrix, voidTiles) {
             }
             mapMatrix[y][this.position] = VoidTile
         }
-        
         return this
     } else {
         for (let x = 0; x < mapMatrix[this.position].length; x++) {
