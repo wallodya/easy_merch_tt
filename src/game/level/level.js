@@ -4,8 +4,7 @@ function Level(container, LevelMap, MapGenerator) {
         this.length = 40
         this.swordsAmount = 2
         this.potionsAmount = 10
-        this.enemiesAmount = 5
-        // this.enemiesAmount = 10
+        this.enemiesAmount = 10
         this.enemies = []
         this.gameFieldMatrix = Array(this.height).fill(Array(this.length).fill())
         this.Map = new LevelMap(container, this.gameFieldMatrix, this.enemies)
