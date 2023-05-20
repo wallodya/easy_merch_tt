@@ -16,7 +16,6 @@ function Player(maxHealth, damage, speed, isNPC) {
 
 Player.prototype.attack = function () {
     const adgacentTiles = this.getAdgacentTiles()
-
     for (let Tile of adgacentTiles) {
         if (Tile.isVoid && Tile.hasEntity) {
             if (!this.isNPC) {

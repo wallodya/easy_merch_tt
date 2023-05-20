@@ -91,7 +91,9 @@ Enemy.prototype.right = function () {
 }
 
 Enemy.prototype.checkPlayer = function () {
-    return this.getAdgacentTiles().some(function (Tile) { Tile.hasEntity && !Tile.Entity.isNPC })
+    return this.getAdgacentTiles().some(function (Tile) {
+        return Tile.hasEntity && !Tile.Entity.isNPC
+    })
 }
 
 Enemy.prototype.die = function () {
