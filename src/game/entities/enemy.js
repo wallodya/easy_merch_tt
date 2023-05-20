@@ -56,9 +56,7 @@ Enemy.prototype.move = function () {
         this.right()
     }
 
-    console.log("checking for attack")
     if (this.checkPlayer()) {
-        console.log("attack")
         this.attack()
     }
     return this
